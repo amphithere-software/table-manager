@@ -35,7 +35,7 @@ function validate() {
     return false;
   }
 
-  if (!name.match(letters)) {
+  if (!name.match(letters_numbers)) {
     alert("Not a valid name");
     return false;
   }
@@ -44,7 +44,6 @@ function validate() {
     alert("Not a valid type");
     return false;
   }
-
 
 }
 
@@ -55,7 +54,7 @@ function validate() {
 <h1 id="headerTitle">New Server</h1>
 
 <div>
-  <form class="form-container" method="post" action="dbconnect.php" onsubmit="return validate()">
+  <form  autocomplete="off" class="form-container" method="post" action="dbconnect.php" onsubmit="return validate()">
 
     <label for="email"><b>Status</b></label>
     <input type="text" placeholder="status" name="status" id="status" required>

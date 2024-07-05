@@ -15,7 +15,7 @@
             <h1>Login</h1>
         </legend>
 
-	<form action="dbconnect.php" method="post">
+	<form autocomplete="off" action="dbconnect.php" method="post">
 	
     <input type="text" name="servername" id="servername" placeholder="servername"/>
 	<br/><br/>

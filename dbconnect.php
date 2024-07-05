@@ -36,7 +36,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `servers` (
 )";
 
 if ($mysqli->query($sql) === TRUE) {
-  echo "Table servers created successfully";
+
 } else {
   echo "Error creating table: " . $mysqli->error;
 }
@@ -53,12 +53,8 @@ $result->execute();
 
 $row_count = $result->get_result();
 
-echo $row_count->num_rows;
-echo $ip_address;
 if($row_count->num_rows > 0) {
 
-
-echo "IP must be unique";
 } else {
 $status = htmlspecialchars($_POST['status']);
 $memory = htmlspecialchars($_POST['memory']);
@@ -91,18 +87,26 @@ echo "<div id='actionButtons'>
   </div>
 </div>
 
-<button onclick='window.location.href=`newserver.php`'>New Server</button><button>Export</button></div><br>";
+<button onclick='window.location.href=`newserver.php`'>New Server</button><button onclick='window.location.href=`export.php`'>Export</button></div><br>";
 
 echo "<div id='serverTable'><table>";
 echo "<tr><th>id</th><th>status</th><th>ip_address</th><th>memory</th><th>name</th><th>type</th><th>delete</th></tr>";
 while ($row = $query->fetch_assoc()) {
 
-  printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td><a href='delete.php?id=".$row['id']."'>Del</a></td></tr>", $row["id"], $row["status"], $row["ip_address"], $row["memory"], $row["name"], $row["type"]);
+  printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td><a href='delete.php?id=".$row['id']."' onclick='return confirmDelete()'>Del</a></td></tr>", $row["id"], $row["status"], $row["ip_address"], $row["memory"], $row["name"], $row["type"]);
     
 }
 echo "</table></div>";
 
 ?>
+
+<script>
+
+function confirmDelete() {
+  return confirm("Delete row?");
+}
+
+</script>
 
 
 
